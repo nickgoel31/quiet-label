@@ -96,20 +96,20 @@ const SettingsModal = ({ setIsModalOpen }: { setIsModalOpen: React.Dispatch<Reac
 
   const toggleMultiValue = (key: 'allergies' | 'dietaryPreferences', value: string) => {
     const current = settings[key];
-    const updated = current.includes(value)
+    const updated = current?.includes(value)
       ? current.filter(v => v !== value)
-      : [...current, value];
+      : [...current || [], value];
 
     persist({ ...settings, [key]: updated });
   };
 
   const addCustomAllergy = () => {
     const trimmed = customAllergy.trim();
-    if (!trimmed || settings.allergies.includes(trimmed)) return;
+    if (!trimmed || settings?.allergies?.includes(trimmed)) return;
 
     persist({
       ...settings,
-      allergies: [...settings.allergies, trimmed],
+      allergies: [...settings?.allergies || [], trimmed],
     });
 
     setCustomAllergy('');
@@ -242,7 +242,8 @@ const SettingsModal = ({ setIsModalOpen }: { setIsModalOpen: React.Dispatch<Reac
                     {opt.choices.map((choice: any) => {
                       const value = typeof choice === 'string' ? choice : choice.id;
                       const label = typeof choice === 'string' ? choice : choice.label;
-                      const selected = opt.single
+                      const isSingle = 'single' in opt && opt.single;
+                      const selected = isSingle
                         ? settings[opt.key as keyof UserSettings] === value
                         : (settings[opt.key as keyof UserSettings] as string[]).includes(value);
 
@@ -250,7 +251,7 @@ const SettingsModal = ({ setIsModalOpen }: { setIsModalOpen: React.Dispatch<Reac
                         <button
                           key={value}
                           onClick={() =>
-                            opt.single
+                            isSingle
                               ? persist({ ...settings, [opt.key]: value })
                               : toggleMultiValue(opt.key as any, value)
                           }
