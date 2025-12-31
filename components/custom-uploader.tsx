@@ -43,7 +43,7 @@ export default function CustomUploader({setImage}: {setImage: (imageUrl: string)
         className="hidden"
         ref={fileInputRef}
         onChange={handleFileChange}
-        accept="image/*"
+        accept="image/*, android/force-camera-workaround"
       />
 
       {/* YOUR CUSTOM BUTTON */}
