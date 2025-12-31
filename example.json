@@ -1,0 +1,38 @@
+[
+    {
+        "company": "Volkswagen",
+        "model_name": "Vento",
+        "year": 2015,
+        "color": "White",
+        "engine_type": "Diesel",
+        "mileage_kmpl": 18,
+        "price_usd": 12000
+    },
+    {
+        "company": "Honda",
+        "model_name": "Civic",
+        "year": 2018,
+        "color": "Black",
+        "engine_type": "Petrol",
+        "mileage_kmpl": 16,
+        "price_usd": 15000
+    },
+    {
+        "company": "Toyota",
+        "model_name": "Corolla",
+        "year": 2017,
+        "color": "Silver",
+        "engine_type": "Hybrid",
+        "mileage_kmpl": 20,
+        "price_usd": 18000
+    },
+    {
+        "company": "Ford",
+        "model_name": "Focus",
+        "year": 2016,
+        "color": "Blue",
+        "engine_type": "Diesel",
+        "mileage_kmpl": 17,
+        "price_usd": 13000
+    }
+]

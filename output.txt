@@ -1,0 +1,239 @@
+{
+  "type": "object",
+  "properties": {
+    "product_name": {
+      "type": "string"
+    },
+    "judgment": {
+      "type": "string"
+    },
+    "all_ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient_name": {
+            "type": "string"
+          },
+          "ingredient_function": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "reasoning": {
+            "type": "string"
+          }
+        },
+        "propertyOrdering": [
+          "ingredient_name",
+          "ingredient_function",
+          "impact",
+          "reasoning"
+        ],
+        "required": [
+          "ingredient_name",
+          "ingredient_function",
+          "impact"
+        ]
+      }
+    },
+    "highlighted_ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient_name": {
+            "type": "string"
+          },
+          "why_its_here": {
+            "type": "string"
+          },
+          "the_worry": {
+            "type": "string"
+          },
+          "contextural_reality": {
+            "type": "string"
+          },
+          "uncertainity": {
+            "type": "number"
+          },
+          "consensus": {
+            "type": "string"
+          }
+        },
+        "propertyOrdering": [
+          "ingredient_name",
+          "why_its_here",
+          "the_worry",
+          "contextural_reality",
+          "uncertainity",
+          "consensus"
+        ],
+        "required": [
+          "ingredient_name",
+          "why_its_here",
+          "the_worry",
+          "contextural_reality",
+          "uncertainity",
+          "consensus"
+        ]
+      }
+    },
+    "context_scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "impact_shift": {
+            "type": "string",
+            "enum": [
+              "minimal",
+              "moderate",
+              "high"
+            ]
+          }
+        },
+        "propertyOrdering": [
+          "scenario",
+          "explanation",
+          "impact_shift"
+        ],
+        "required": [
+          "scenario",
+          "explanation",
+          "impact_shift"
+        ]
+      }
+    },
+    "closing": {
+      "type": "string"
+    },
+    "inferred_intent": {
+      "type": "object",
+      "properties": {
+        "primary_concern": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "propertyOrdering": [
+        "primary_concern",
+        "confidence",
+        "explanation"
+      ],
+      "required": [
+        "primary_concern",
+        "confidence",
+        "explanation"
+      ]
+    },
+    "ignored_ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient_name": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "propertyOrdering": [
+          "ingredient_name",
+          "reason"
+        ],
+        "required": [
+          "ingredient_name",
+          "reason"
+        ]
+      }
+    },
+    "conditional_insights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "insight": {
+            "type": "string"
+          }
+        },
+        "propertyOrdering": [
+          "condition",
+          "insight"
+        ],
+        "required": [
+          "condition",
+          "insight"
+        ]
+      }
+    },
+    "time_impact": {
+      "type": "object",
+      "properties": {
+        "short_term": {
+          "type": "string"
+        },
+        "long_term": {
+          "type": "string"
+        }
+      },
+      "propertyOrdering": [
+        "short_term",
+        "long_term"
+      ],
+      "required": [
+        "short_term",
+        "long_term"
+      ]
+    },
+    "ai_limitations": {
+      "type": "string"
+    }
+  },
+  "propertyOrdering": [
+    "product_name",
+    "judgment",
+    "all_ingredients",
+    "highlighted_ingredients",
+    "context_scenarios",
+    "closing",
+    "inferred_intent",
+    "ignored_ingredients",
+    "conditional_insights",
+    "time_impact",
+    "ai_limitations"
+  ],
+  "required": [
+    "product_name",
+    "judgment",
+    "all_ingredients",
+    "highlighted_ingredients",
+    "context_scenarios",
+    "closing",
+    "inferred_intent",
+    "ignored_ingredients",
+    "conditional_insights",
+    "time_impact"
+  ]
+}
