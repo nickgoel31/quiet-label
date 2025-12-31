@@ -412,7 +412,7 @@ export default function App() {
                     <div className="space-y-2 mb-6">
                       <h4 className="text-[9px] font-black uppercase text-zinc-400 tracking-tighter">Research Focus:</h4>
                       <div className="flex flex-wrap gap-2">
-                        {dualAnalysis.gemini.research_focus.map(f => (
+                        {dualAnalysis.gemini.research_focus.map((f:any) => (
                           <span key={f} className="text-[10px] bg-zinc-50 border border-zinc-100 px-2 py-0.5 rounded-full text-zinc-500">{f}</span>
                         ))}
                       </div>
