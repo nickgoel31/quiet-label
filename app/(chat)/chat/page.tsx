@@ -116,6 +116,19 @@ export default function App() {
 
   const [runTour, setRunTour] = useState(false);
 
+
+  useEffect(() => {
+    // If user already has a analysis in local storage, load it on mount instead of showing a new chat screen
+    const existingAnalyses = JSON.parse(localStorage.getItem('analyses') || '[]');
+    if(existingAnalyses.length > 0) {
+      const sortAnalysesByDate = existingAnalyses.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      setCurrentAnalysisLocalStorage(sortAnalysesByDate[0]);
+      setDualAnalysis(sortAnalysesByDate[0].data);
+      setAnalysis(sortAnalysesByDate[0].data.gemini);
+      setAnalysisTwo(sortAnalysesByDate[0].data.llama);
+      setSelectedModel('gemini')
+    }
+  },[])
   
   useEffect(() => {
     const hasSeenTour = localStorage.getItem('has_seen_tour');
