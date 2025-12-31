@@ -327,7 +327,7 @@ GOAL:
         thoughtOutput: thoughtStream.value,
         finalData: runAnalysis()
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log("Error in analyzeIngredients:", error.message);
     
     return null;

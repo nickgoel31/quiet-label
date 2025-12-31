@@ -66,7 +66,7 @@ export async function chatFollowUp(
         },
         {
           role: 'user',
-          parts: [{text: `PRODUCT NAME: ${productContext.product_name} \n ${focusContextString} Now, answer the user's follow-up questions`}]
+          parts: [{text: `PRODUCT NAME: ${productContext.gemini.product_name} \n ${focusContextString} Now, answer the user's follow-up questions`}]
         },
         {
           role: 'model',
