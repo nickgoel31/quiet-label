@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${inter.className} antialiased`}
+        suppressHydrationWarning={true}
       >
         <NextSSRPlugin
           /**
