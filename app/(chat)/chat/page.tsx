@@ -3,12 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Info, Layers, Zap, ShieldCheck, MousePointer2, RefreshCcw, Sparkles, 
-  ListFilter, Camera, Clock, Activity, Send, Loader2, X, User, 
+  Info, Layers, Zap, ShieldCheck, MousePointer2, RefreshCcw, Sparkles,  Camera, Clock, Activity,  X, User, 
   BrainCircuit,
   Globe,
   Cpu,
-  GitCompare,
   Menu
 } from 'lucide-react';
 
@@ -21,7 +19,6 @@ import remarkGfm from 'remark-gfm'
 import ScrollToTop from '@/components/scroll-to-top';
 import { TradeoffsCard } from '@/components/trade-offs-card';
 import { analyzeIngredientsOpenSource } from '@/actions/groq/analyze-ingredients';
-import ModelSelector from '@/components/modelselector';
 import Sidebar from '@/components/sidebar';
 import Navbar from '@/components/chat-ui/navbar';
 import { UserSettings } from '@/types';
@@ -77,7 +74,7 @@ const IngredientCard = ({ data, index, onSelect, isSelected }: any) => (
       </div>
       <div>
         <h4 className="text-[10px] uppercase tracking-wider font-bold text-neutral-400 mb-1">The Concern</h4>
-        <p className="text-sm text-neutral-700 leading-relaxed italic">"{data.the_worry}"</p>
+        <p className="text-sm text-neutral-700 leading-relaxed italic">&quot;{data.the_worry}&quot;</p>
       </div>
       <div className="bg-white/50 p-4 rounded-xl border border-neutral-100">
         <h4 className="text-[10px] uppercase tracking-wider font-bold text-neutral-900 mb-1">Contextual Reality</h4>
@@ -439,7 +436,7 @@ export default function App() {
                     <div className="space-y-2 mb-6">
                       <h4 className="text-[9px] font-black uppercase text-zinc-400 tracking-tighter">Research Focus:</h4>
                       <div className="flex flex-wrap gap-2">
-                        {dualAnalysis.llama.research_focus.map(f => (
+                        {dualAnalysis.llama.research_focus.map((f: any) => (
                           <span key={f} className="text-[10px] bg-white border border-zinc-200 px-2 py-0.5 rounded-full text-zinc-500">{f}</span>
                         ))}
                       </div>
