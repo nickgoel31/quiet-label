@@ -172,7 +172,7 @@ export default function LandingPage() {
           Developed by Harsh Goel
         </p>
         <div className="flex justify-center gap-6 text-neutral-400">
-           <a href="#" className="hover:text-neutral-900 transition-colors">GitHub</a>
+           <a href="https://github.com/nickgoel31/quiet-label" target="_blank" className="hover:text-neutral-900 transition-colors">GitHub</a>
         </div>
         
       </footer>
