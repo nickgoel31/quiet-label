@@ -336,7 +336,7 @@ export default function App() {
                       <span className="hidden sm:inline">Scan Label</span>
                     </button>
                     <button onClick={() => handleAnalyze()} disabled={!input && !selectedImage} className="flex items-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-2xl font-medium hover:bg-neutral-800 disabled:bg-neutral-200 shadow-lg">
-                      <Zap size={16} /> Analyze Ingredients
+                      <Zap size={16} /> Analyze
                     </button>
                   </div>
                 </div>
