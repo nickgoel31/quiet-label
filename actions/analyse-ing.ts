@@ -324,11 +324,12 @@ GOAL:
   thoughtStream.done();
   console.log(JSON.parse(fullJsonText))
     return JSON.parse(fullJsonText);
-}
+} 
+const finalData= await runAnalysis();
   
     return {
         thoughtOutput: thoughtStream.value,
-        finalData: runAnalysis()
+        finalData
     }
   } catch (error: any) {
     console.log("Error in analyzeIngredients:", error.message);
