@@ -11,7 +11,18 @@ import {
 import { createStreamableValue } from '@ai-sdk/rsc'; // Add this
 import { UserSettings } from '@/types';
 
-export async function analyzeIngredients(userInput: string, imageBase64?: string, customApiKey?: string, userSettings?: UserSettings) {
+async function urlToGenerativePart(url: string) {
+  const response = await fetch(url);
+  const buffer = await response.arrayBuffer();
+  return {
+    inlineData: {
+      data: Buffer.from(buffer).toString("base64"),
+      mimeType: "image/png", // Or detect via response headers
+    },
+  };
+}
+
+export async function analyzeIngredients(userInput: string, imageUrl?: string, customApiKey?: string, userSettings?: UserSettings) {
   try {
     const ai = new GoogleGenAI({
     apiKey: customApiKey ? customApiKey?.length > 0 ? customApiKey : process.env.GEMINI_API_KEY! : process.env.GEMINI_API_KEY!
@@ -267,17 +278,9 @@ GOAL:
   const parts: any[] = [{ text: userInput || "Analyze the ingredients in this image." }];
   
 
-  if (imageBase64) {
-    // Extract mime type and data from base64 string
-    const mimeType = imageBase64.match(/data:(.*?);base64/)?.[1] || 'image/jpeg';
-    const base64Data = imageBase64.split(',')[1];
-
-    parts.push({
-      inlineData: {
-        mimeType: mimeType,
-        data: base64Data
-      }
-    });
+  if (imageUrl) {
+    const imagePart = await urlToGenerativePart(imageUrl);
+    parts.push(imagePart);
   }
 
   const contents = [

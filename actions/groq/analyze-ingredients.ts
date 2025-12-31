@@ -8,7 +8,7 @@ const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY!,
 });
 
-export async function analyzeIngredientsOpenSource(userInput: string, imageBase64?: string, userSettings?: UserSettings) {
+export async function analyzeIngredientsOpenSource(userInput: string,allIngredients: string[], userSettings?: UserSettings) {
     const chatCompletion = await groq.chat.completions.create({
   "messages": [
     {
@@ -34,14 +34,9 @@ export async function analyzeIngredientsOpenSource(userInput: string, imageBase6
       Dietary Preferences: ${userSettings?.dietaryPreferences && userSettings.dietaryPreferences.length > 0 ? userSettings.dietaryPreferences.join(', ') : 'None'}\n
       Allergies: ${userSettings?.allergies && userSettings.allergies.length > 0 ? userSettings.allergies.join(', ') : 'None'}\n`
         },
-        imageBase64 ? {
-            "type": "image_url",
-            "image_url":{
-                url: `data:image/png;base64,${imageBase64}` || ""
-            }
-        } : {
-            "type": "text",
-            "text": ""
+        {
+          "type": "text",
+          "text": `${allIngredients.length > 0 ? `Here is the list of ingredients I could identify: ${allIngredients.join(', ')}.` : "No ingredients list provided."} `
         }
       ]
     },

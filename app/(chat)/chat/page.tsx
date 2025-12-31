@@ -25,6 +25,9 @@ import { UserSettings } from '@/types';
 import Samples from '@/components/samples';
 import ProductTour from '@/components/tour-component';
 
+import { UploadButton } from "@/utils/uploadthing";
+import CustomUploader from '@/components/custom-uploader';
+
 // --- Sub-Components ---
 
 const UncertaintyBar = ({ level, label }: { level: number; label: string }) => (
@@ -144,14 +147,7 @@ export default function App() {
     }
   }, [messages, isTyping]);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setSelectedImage(reader.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
+  
 
   const handleStoringInLocalStorage = (analysisData: any) => {
     const existingAnalyses = JSON.parse(localStorage.getItem('analyses') || '[]');
@@ -195,8 +191,8 @@ export default function App() {
         }
       })();
       const result = await geminiResult!.finalData;
-      const cleanBase64 = selectedImage ? selectedImage.split(",")[1] : null;
-      const llamaResult = await analyzeIngredientsOpenSource(textToAnalyze, cleanBase64 || undefined, userSettings);
+      const allIngredientsByGemini = result.all_ingredients.map((ing: any) => ing.ingredient_name.toLowerCase());
+      const llamaResult = await analyzeIngredientsOpenSource(textToAnalyze,allIngredientsByGemini, userSettings);
 
 
       setAnalysis(result);
@@ -343,11 +339,15 @@ export default function App() {
                  
 
                   <div className="absolute bottom-6 right-6 flex gap-3">
-                    <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
-                    <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 bg-neutral-100 text-neutral-900 px-6 py-3 rounded-2xl font-medium hover:bg-neutral-200 border border-neutral-200 shadow-sm">
+                   <CustomUploader 
+                   setImage={setSelectedImage}
+                   />
+                      
+                  
+                    {/* <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 bg-neutral-100 text-neutral-900 px-6 py-3 rounded-2xl font-medium hover:bg-neutral-200 border border-neutral-200 shadow-sm">
                       <Camera size={18} />
                       <span className="hidden sm:inline">Scan Label</span>
-                    </button>
+                    </button> */}
                     <button onClick={() => handleAnalyze()} disabled={!input && !selectedImage} className="flex items-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-2xl font-medium hover:bg-neutral-800 disabled:bg-neutral-200 shadow-lg">
                       <Zap size={16} /> Analyze
                     </button>
@@ -567,7 +567,7 @@ export default function App() {
                       {dualAnalysis[selectedModel].all_ingredients.map((ing: any, idx: number) => (
                         <div key={idx} onClick={() => setCurrentSelectedBlock({ data: ing, cardType: 'ingredient' })} className={`p-5 rounded-2xl transition-all border cursor-pointer ${currentSelectedBlock?.data?.ingredient_name === ing.ingredient_name ? 'border-neutral-900 bg-white' : ing.impact === 'high' ? 'bg-neutral-900 text-white border-neutral-800' : 'bg-white border-neutral-200'}`}>
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className={`font-semibold ${ing.impact === 'high' ? 'text-xl' : 'text-sm'}`}>{ing.ingredient_name}</h4>
+                            <h4 className={`font-semibold capitalize ${ing.impact === 'high' ? 'text-xl' : 'text-sm'}`}>{ing.ingredient_name.toLowerCase()}</h4>
                             {ing.impact === 'high' && <span className="text-[10px] uppercase font-black bg-white/20 px-2 py-0.5 rounded">Scrutiny High</span>}
                           </div>
                           <div className="flex flex-col gap-1">
@@ -597,7 +597,7 @@ export default function App() {
                       {dualAnalysis[selectedModel].all_ingredients.map((ing: any, idx: number) => (
                         <div key={idx} onClick={() => setCurrentSelectedBlock({ data: ing, cardType: 'ingredient' })} className={`p-5 rounded-2xl transition-all border cursor-pointer ${currentSelectedBlock?.data?.ingredient_name === ing.ingredient_name ? 'border-neutral-900 bg-white' : ing.impact === 'high' ? 'bg-neutral-900 text-white border-neutral-800' : 'bg-white border-neutral-200'}`}>
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className={`font-semibold ${ing.impact === 'high' ? 'text-xl' : 'text-sm'}`}>{ing.ingredient_name}</h4>
+                            <h4 className={`font-semibold capitalize ${ing.impact === 'high' ? 'text-xl' : 'text-sm'}`}>{ing.ingredient_name.toLowerCase()}</h4>
                             {ing.impact === 'high' && <span className="text-[10px] uppercase font-black bg-white/20 px-2 py-0.5 rounded">Scrutiny High</span>}
                           </div>
                           <div className="flex flex-col gap-1">
