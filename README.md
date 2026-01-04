@@ -2,7 +2,7 @@
 
 An AI-powered food ingredient analysis tool that helps you understand what's really in your food. Uses dual AI models (Gemini 2.5 Flash & Llama 4) to provide comprehensive, context-aware ingredient insights.
 
-![Quiet Label Demo](demo-screenshot.png)
+![Quiet Label Demo](yt link)
 
 ## ✨ Features
 
@@ -17,70 +17,16 @@ An AI-powered food ingredient analysis tool that helps you understand what's rea
   - **Full**: Complete ingredient breakdown
   - **Deep-Dive**: Comprehensive analysis with all insights
 
-## 🚀 Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/quiet-label.git
-
-# Install dependencies
-cd quiet-label
-npm install
-
-# Set up environment variables
-cp .env.example .env.local
-# Add your API keys
-
-# Run development server
-npm run dev
-```
-
-Visit `http://localhost:3000` to start analyzing!
-
-## 🔑 API Keys
-
-You'll need:
-
-- **Google Gemini API Key** - Get it [here](https://ai.google.dev/gemini-api/docs/api-key)
-- **Groq API Key** (for Llama) - Get it [here](https://console.groq.com/)
-
-Add to `.env.local`:
-
-```env
-GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key
-GROQ_API_KEY=your_groq_key
-```
-
-Users can also provide their own API keys through the UI for privacy.
-
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
+- **Framework**: Next.js
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
-- **AI**: Google Gemini, Groq (Llama), AI SDK
+- **AI**: Google Gemini, Groq (Llama)
 - **Markdown**: react-markdown
 - **Icons**: Lucide React
 - **File Upload**: UploadThing
-
-## 📁 Project Structure
-
-```
-quiet-label/
-├── app/                    # Next.js app directory
-├── actions/               # Server actions for AI calls
-│   ├── analyse-ing.ts    # Gemini analysis
-│   ├── chat.ts           # Follow-up chat
-│   └── groq/             # Llama analysis
-├── components/            # React components
-│   ├── sidebar.tsx
-│   ├── navbar.tsx
-│   ├── samples.tsx
-│   └── ...
-├── types/                 # TypeScript definitions
-└── utils/                 # Utility functions
-```
 
 ## 🎯 How It Works
 
@@ -101,25 +47,6 @@ quiet-label/
 - **Conditional Insights** - Dietary restriction compatibility
 - **Tradeoffs** - Balance between competing goals
 
-### Data Structure
-
-Each analysis includes:
-
-```typescript
-{
-  product_name: string
-  judgment: string
-  inferred_intent_user_concern: string
-  highlighted_ingredients: Ingredient[]
-  all_ingredients: Ingredient[]
-  tradeoffs: Tradeoffs
-  context_scenarios: Scenario[]
-  conditional_insights: ConditionalInsight[]
-  time_impact: { short_term: string, long_term: string }
-  // ... and more
-}
-```
-
 ## 💾 Local Storage
 
 - Stores up to 3 analyses
@@ -133,19 +60,6 @@ Each analysis includes:
 **Full** → Complete compositional map  
 **Deep-Dive** → Everything: scenarios, impacts, insights, tradeoffs
 
-## 🤝 Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) for details
-
 ## 🏆 Credits
 
 Built for **EnCode 2026** hackathon submission.
@@ -158,7 +72,7 @@ Built for **EnCode 2026** hackathon submission.
 
 ## 📧 Contact
 
-Questions? Open an issue or reach out at [your-email@example.com]
+Questions? Open an issue or reach out at [harshgoel2004@gmail.com]
 
 ---
 
